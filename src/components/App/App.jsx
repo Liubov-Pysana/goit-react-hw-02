@@ -23,19 +23,20 @@ const App = () => {
     const positivePercentage = totalFeedback > 0 ? Math.round((feedbackCounts.good * 100) / totalFeedback) : 0;
 
     const updateFeedback = (feedbackType) => {
-        if (feedbackType == "good") {
-            setFeedbackCounts({ ...feedbackCounts, good: feedbackCounts.good + 1 });
-        }
-
-        if (feedbackType == "neutral") {
-            setFeedbackCounts({ ...feedbackCounts, neutral: feedbackCounts.neutral + 1 });
-        }
-        if (feedbackType == "bad") {
-            setFeedbackCounts({ ...feedbackCounts, bad: feedbackCounts.bad + 1 });
-        }
-        if (feedbackType == "reset") {
-            setFeedbackCounts({ good: 0, neutral: 0, bad: 0 });
-        }
+        setFeedbackCounts((prevCounts) => {
+            switch (feedbackType) {
+                case "good":
+                    return { ...prevCounts, good: prevCounts.good + 1 };
+                case "neutral":
+                    return { ...prevCounts, neutral: prevCounts.neutral + 1 };
+                case "bad":
+                    return { ...prevCounts, bad: prevCounts.bad + 1 };
+                case "reset":
+                    return { good: 0, neutral: 0, bad: 0 };
+                default:
+                    return prevCounts;
+            }
+        });
     };
 
     return (
