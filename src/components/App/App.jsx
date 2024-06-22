@@ -1,6 +1,7 @@
 import Descrition from "../../Description/Description";
 import Options from "../Options/Options";
 import Feedback from "../Feedback/Feedback";
+import Notification from "../Notification/Notification";
 import { useState, useEffect } from "react";
 
 const App = () => {
@@ -41,14 +42,19 @@ const App = () => {
         <>
             <Descrition />
             <Options clickCallback={updateFeedback} count={totalFeedback} />
-            <Feedback
-                good={feedbackCounts.good}
-                neutral={feedbackCounts.neutral}
-                bad={feedbackCounts.bad}
-                total={totalFeedback}
-                positivePercentage={positivePercentage}
-            />
+            {totalFeedback === 0 ? (
+                <Notification message="No feedback yet" />
+            ) : (
+                <Feedback
+                    good={feedbackCounts.good}
+                    neutral={feedbackCounts.neutral}
+                    bad={feedbackCounts.bad}
+                    total={totalFeedback}
+                    positivePercentage={positivePercentage}
+                />
+            )}
         </>
     );
 };
+
 export default App;

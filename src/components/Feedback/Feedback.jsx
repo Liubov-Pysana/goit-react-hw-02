@@ -1,9 +1,4 @@
-export default function Feedback({ good, neutral, bad, positivePercentage }) {
-    const totalFeedback = good + neutral + bad;
-    if (totalFeedback === 0) {
-        return <p>No feedback yet</p>;
-    }
-
+export default function Feedback({ good, neutral, bad, positivePercentage, totalFeedback }) {
     return (
         <ul>
             <li>Good: {good}</li>
