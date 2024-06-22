@@ -18,17 +18,8 @@ const App = () => {
         localStorage.setItem("num-of-clicks", JSON.stringify(feedbackCounts));
     }, [feedbackCounts]);
 
-    // const [feedbackCounts, setFeedbackCounts] = useState({
-    //     good: 0,
-    //     neutral: 0,
-    //     bad: 0,
-    // });
-
-    // useEffect(() => {
-    //     localStorage.setItem("num-of-clicks", feedbackCounts);
-    // }, [feedbackCounts]);
-
     const totalFeedback = feedbackCounts.good + feedbackCounts.neutral + feedbackCounts.bad;
+    const positivePercentage = totalFeedback > 0 ? Math.round((feedbackCounts.good * 100) / totalFeedback) : 0;
 
     const updateFeedback = (feedbackType) => {
         if (feedbackType == "good") {
@@ -50,7 +41,13 @@ const App = () => {
         <>
             <Descrition />
             <Options clickCallback={updateFeedback} count={totalFeedback} />
-            <Feedback good={feedbackCounts.good} neutral={feedbackCounts.neutral} bad={feedbackCounts.bad} />
+            <Feedback
+                good={feedbackCounts.good}
+                neutral={feedbackCounts.neutral}
+                bad={feedbackCounts.bad}
+                total={totalFeedback}
+                positivePercentage={positivePercentage}
+            />
         </>
     );
 };

@@ -1,4 +1,4 @@
-export default function Feedback({ good, neutral, bad }) {
+export default function Feedback({ good, neutral, bad, positivePercentage }) {
     const totalFeedback = good + neutral + bad;
     if (totalFeedback === 0) {
         return <p>No feedback yet</p>;
@@ -10,7 +10,7 @@ export default function Feedback({ good, neutral, bad }) {
             <li>Neutral: {neutral}</li>
             <li>Bad: {bad}</li>
             <li>Total: {totalFeedback}</li>
-            <li>Positive: {Math.round((good * 100) / totalFeedback)}%</li>
+            <li>Positive: {positivePercentage}%</li>
         </ul>
     );
 }
