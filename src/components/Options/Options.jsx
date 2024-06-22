@@ -1,3 +1,5 @@
+import css from "./Options.module.css";
+
 export default function Options({ clickCallback, count }) {
     return (
         <div>
